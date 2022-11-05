@@ -59,13 +59,13 @@ It provides a common file access layer through its Universal File Access. By lev
 <br>
 
 <p align="center">
-<img src="https://imgur.com/D6KfH2C.png" height="80%" width="80%" alt="linode"/>
+<img src="https://imgur.com/D6KfH2C.png" height="85%" width="85%" alt="linode"/>
 </p>
 
 <br>
 
 <p align="center">
-<img src="https://imgur.com/LgTtzyd.png" height="80%" width="80%" alt="linode"/>
+<img src="https://imgur.com/LgTtzyd.png" height="85%" width="85%" alt="linode"/>
 </p>
 
 <br>
@@ -75,13 +75,13 @@ It provides a common file access layer through its Universal File Access. By lev
 <br>
 
 <p align="center">
-<img src="https://imgur.com/9fD2cug.png" height="80%" width="80%" alt="linode"/>
+<img src="https://imgur.com/9fD2cug.png" height="85%" width="85%" alt="linode"/>
 </p>
 
 <br>
 
 <p align="center">
-<img src="https://imgur.com/VKPID23.png" height="80%" width="80%" alt="linode"/>
+<img src="https://imgur.com/VKPID23.png" height="85%" width="85%" alt="linode"/>
 </p>
 
 <br>
@@ -91,7 +91,7 @@ It provides a common file access layer through its Universal File Access. By lev
 <br>
 
 <p align="center">
-<img src="https://imgur.com/8e42g8N.png" height="80%" width="80%" alt="ssh"/>
+<img src="https://imgur.com/8e42g8N.png" height="85%" width="85%" alt="ssh"/>
 </p>
 
 <br>
@@ -107,7 +107,7 @@ sudo usermod -aG sudo <username>
 <br>
 
 <p align="center">
-<img src="https://imgur.com/MBHicV2.png" height="80%" width="80%" alt="adduser"/>
+<img src="https://imgur.com/MBHicV2.png" height="85%" width="85%" alt="adduser"/>
 </p>
 
 <br>
@@ -145,7 +145,7 @@ sudo nano /etc/hosts (only if you count with a registered DNS domain)
 <br>
 
 <p align="center">
-<img src="https://imgur.com/RABVTa7.png" height="80%" width="80%" alt="archive"/>
+<img src="https://imgur.com/RABVTa7.png" height="85%" width="85%" alt="archive"/>
 </p>
 
 <br>
@@ -171,7 +171,7 @@ systemctl status mariadb
 <br>
 
 <p align="center">
-<img src="https://imgur.com/xWJKF8y.png" height="80%" width="80%" alt="mariadb"/>
+<img src="https://imgur.com/xWJKF8y.png" height="85%" width="85%" alt="mariadb"/>
 </p>
 
 <br>
