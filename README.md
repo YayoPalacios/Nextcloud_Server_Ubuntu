@@ -14,7 +14,9 @@ It’s a fork of the OwnCloud project, developed by many of the original members
 
 It provides a common file access layer through its Universal File Access. By leveraging existing management, security and governance tools and processes, deployment is made easier and faster. It brings data from cloud storage, Windows network drive and legacy data storage to users in a single, easy interface allowing them to access, sync and share files on any device, wherever they are, managed, secured and controlled. There’s also lots of collaboration tools like online document editing, audio/video chat and more.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled.png)
+<br>
+
+
 
 [Source](https://nextcloud.com/media/wp135098u/Architecture-Whitepaper-WebVersion-072018.pdf)
 
