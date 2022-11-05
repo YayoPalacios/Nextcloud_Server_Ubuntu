@@ -218,66 +218,96 @@ FLUSH PRIVILEGES;
 
 [Source](https://www.sumologic.com/blog/apache-web-server-introduction/)
 
+<br>
+
 - Let’s install the required packages to support our web server. Keep in mind **Apache** is part of the following dependencies so it’s not listed explicitly on our command.
 
 ```
-**sudo apt install php php-apcu php-bcmath php-cli php-common php-curl php-gd php-gmp php-imagick php-intl php-mbstring php-mysql php-zip php-xml**
+sudo apt install php php-apcu php-bcmath php-cli php-common php-curl php-gd php-gmp php-imagick php-intl php-mbstring php-mysql php-zip php-xml
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2011.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/sIrFl1d.png" height="95%" width="95%" alt="apache"/>
+</p>
+
+<br>
 
 - Once installed, we’ll need to check its status.
 
 ```
-**systemctl status apache2**
+systemctl status apache2
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2012.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/qOBDdg2.png" height="85%" width="85%" alt="apache-status"/>
+</p>
+
+<br>
 
 - We’ll enable the recommended **PHP** extensions and modules.
 
 ```
-**sudo phpenmod bcmath gmp imagick intl
+sudo phpenmod bcmath gmp imagick intl
 
-sudo a2enmod dir env headers mime rewrite ssl**
+sudo a2enmod dir env headers mime rewrite ssl
 ```
+
+<br>
 
 - Let’s install **unzip** and decompress our Nextcloud file now.
 
 ```
-**sudo apt install unzip
+sudo apt install unzip
 
-unzip latest.zip**
+unzip latest.zip
 ```
+
+<br>
 
 - I’ll be renaming the directory just for the sake of consistency prior to relocating it and modifying its permissions.
 
 ```
-**mv nextcloud/ nextcloud-build
+mv nextcloud/ nextcloud-build
 
 sudo chown -R www-data:www-data nextcloud-build/
 
-sudo mv nextcloud-build/ /var/www**
+sudo mv nextcloud-build/ /var/www
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2013.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/PXTYync.png" height="85%" width="85%" alt="terminal"/>
+</p>
+
+<br>
 
 - We’ll now go ahead and disable **Apache’s** default page.
 
 ```
-**sudo a2dissite 000-default.conf**
+sudo a2dissite 000-default.conf
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2014.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/FiotWCC.png" height="85%" width="85%" alt="apache"/>
+</p>
+
+<br>
 
 - We’ll setup our own config file where we’ll indicate **Apache** how to serve Nextcloud, please reference the actual content below.
 
 ```
-**sudo nano /etc/apache2/sites-available/nextcloud-build.conf**
+sudo nano /etc/apache2/sites-available/nextcloud-build.conf
 ```
 
 ```
-**<VirtualHost *:80>
+<VirtualHost *:80>
     DocumentRoot "/var/www/nextcloud-build"
     ServerName nextcloud-build
 
@@ -291,32 +321,41 @@ sudo mv nextcloud-build/ /var/www**
    TransferLog /var/log/apache2/nextcloud-build_access.log
    ErrorLog /var/log/apache2/nextcloud-build_error.log
 
-</VirtualHost>**
+</VirtualHost>
 ```
 
-<aside>
-💡 *These filenames need to match yours so be sure to update them as needed.*
+<br>
 
-</aside>
+> 💡 _These filenames need to match yours so be sure to update them as needed._
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2015.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/jgiVjgD.png" height="85%" width="85%" alt="config"/>
+</p>
+
+<br>
 
 - Now, we enable the site.
 
 ```
-**sudo a2ensite nextcloud-build.conf**
+sudo a2ensite nextcloud-build.conf
 ```
+
+<br>
 
 - For our next stage we’ll update a couple of **PHP** options, we’ll edit the following file first.
 
 ```
-**sudo nano /etc/php/8.1/apache2/php.ini**
+sudo nano /etc/php/8.1/apache2/php.ini
 ```
+
+<br>
 
 - Let’s adjust these parameters, if you’re using nano, use **CTRL+W** as a search option to save yourself some time.
 
 ```
-**memory_limit = 512M
+memory_limit = 512M
 upload_max_filesize = 200M
 max_execution_time = 360
 post_max_size = 200M
@@ -326,49 +365,93 @@ opcache.interned_strings_buffer=8
 opcache.max_accelerated_files=10000
 opcache.memory_consumption=128
 opcache.save_comments=1
-opcache.revalidate_freq=2**
+opcache.revalidate_freq=2
 ```
 
-- When you run into a setting preceded by (;) \*\*\*\*make sure to take it out, this way we’re essentially “un-commenting” it, then update accordingly.
+<br>
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2016.png)
+- When you run into a setting preceded by (;) make sure to take it out, this way we’re essentially “un-commenting” it, then update accordingly.
+
+<br>
+
+<p align="center">
+<img src="https://imgur.com/jxVE9nx.png" height="85%" width="85%" alt="php-ini"/>
+</p>
+
+<br>
 
 - We need to restart Apache to apply our latest changes.
 
-```php
-**sudo systemctl restart apache2**
 ```
+sudo systemctl restart apache2
+```
+
+<br>
 
 - Once completed, we’ll reload our browser’s tab with the IP address from our server.
 
+<br>
+
 - What we should get now, is Nextcloud’s initial setup site.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2017.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/iSf7EWM.png" height="85%" width="85%" alt="nextcloud"/>
+</p>
+
+<br>
 
 ### We are almost there!
 
+<br>
+
 - We still need to create an admin account and point to the database user we created with our **GRANT** statement when setting up **MariaDB**.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2018.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/az7l2L5.png" height="85%" width="85%" alt="nextcloud"/>
+</p>
+
+<br>
 
 - Once filled in, we’ll click on **Install** and let it do its thing, it should take about a minute or so.
 
+<br>
+
 - Then, click on **Install recommended apps**.
+
+<br>
 
 - After the installation, we should be set and ready to go 🏆.
 
+<br>
+
 - We’ll end up with our very own open-source cloud instance with tons of plug-ins and customization options.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2019.png)
+<br>
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2020.png)
+<p align="center">
+<img src="https://imgur.com/yx0FWlW.png" height="85%" width="85%" alt="nextcloud"/>
+</p>
+
+<br>
+
+<p align="center">
+<img src="https://imgur.com/Q1h2QlA.png" height="85%" width="85%" alt="nextcloud-dashboard"/>
+</p>
+
+<br>
 
 ## Next steps:
 
-- Under **Administration settings → Overview**, you’ll find a dedicated section with a list of **\*\***Security & setup warnings**\*\***. It’s important we address as many of these points as we can.
+- Under **Administration settings → Overview**, you’ll find a dedicated section with a list of **Security & setup warnings**. It’s important we address as many of these points as we can.
 
 - You can reference this [guide](https://docs.nextcloud.com/server/25/admin_manual/installation/harden_server.html) or my YouTube [video](https://www.youtube.com/watch?v=eARUpvD1G98) where I go through the finishing tweaks to correct **most** of these security concerns.
   **IMPORTANT:** Unless we count with a registered DNS domain, we won’t be able to correct our insecure HTTP connection issue. This is expected as we’d need to acquire a TLS certificate. If you do have one, you can refer to this setup [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal) by Certbot.
+
+<br>
 
 ## Further learning:
 
