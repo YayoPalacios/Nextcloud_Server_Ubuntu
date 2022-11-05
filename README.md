@@ -16,48 +16,92 @@ It provides a common file access layer through its Universal File Access. By lev
 
 <br>
 
-
+<p align="center">
+<img src="https://imgur.com/PbTQ8Ab.png" height="70%" width="70%" alt="nextcloud-diagram"/>
+</p>
 
 [Source](https://nextcloud.com/media/wp135098u/Architecture-Whitepaper-WebVersion-072018.pdf)
 
+<br>
+
 ## Project overview:
 
-![Nextcloud diagram.jpg](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Nextcloud_diagram.jpg)
+<p align="center">
+<img src="https://imgur.com/cLUhfAY.png" height="75%" width="75%" alt="lab-diagram"/>
+</p>
+
+<br>
 
 - First, we’ll go ahead and create a Linode account, you can try out this [link](https://linode.gvw92c.net/c/2789508/939241/10906) that will give you 100 USD worth of credits which you can use for up to 3 months.
 
-**Quick note:** You can use any cloud provider of your preference, we’ll stick to Linode because it’s what I’ve been using lately for hands-on Linux projects without having to worry about your local resources like RAM or CPU. 
+<br>
+
+**Quick note:** You can use any cloud provider of your preference, we’ll stick to Linode because it’s what I’ve been using lately for hands-on Linux projects without having to worry about your local resources like RAM or CPU.
+
+<br>
 
 ## Let’s get to the actual build then …
 
 - We’ll generate our own virtual machine from the **Linodes** tab.
 
+<br>
+
 - Make sure to select **Ubuntu 22.04 LTS** as our image for this lab.
+
+<br>
 
 - Under **Region**, we’ll go with the closest to our actual location, in my case Dallas is my go to option.
 
-- You can pick a shared CPU plan of course, however, I’d recommend going with at least 2 GB of RAM for this project.
+<br>
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%201.png)
+- You can pick a shared CPU plan of course, however, I’d recommend going with **at least 2 GB of RAM** for this project.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%202.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/D6KfH2C.png" height="70%" width="70%" alt="linode"/>
+</p>
+
+<br>
+
+<p align="center">
+<img src="https://imgur.com/LgTtzyd.png" height="70%" width="70%" alt="linode"/>
+</p>
+
+<br>
 
 - When you’re done with the settings, hit the **Create Linode** button.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%203.png)
+<br>
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%204.png)
+<p align="center">
+<img src="https://imgur.com/9fD2cug.png" height="70%" width="70%" alt="linode"/>
+</p>
+
+<br>
+
+<p align="center">
+<img src="https://imgur.com/VKPID23.png" height="70%" width="70%" alt="linode"/>
+</p>
+
+<br>
 
 - Once provisioned, we’ll connect to our instance via SSH.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%205.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/8e42g8N.png" height="70%" width="70%" alt="ssh"/>
+</p>
+
+<br>
 
 - Since Linode defaults our main account to root, we’ll need to create one for ourselves.
 
-```
-**adduser <username>
+```sh
+adduser <username>
 
-sudo usermod -aG sudo <username>**
+sudo usermod -aG sudo <username>
 ```
 
 ![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%206.png)
@@ -127,11 +171,8 @@ FLUSH PRIVILEGES;**
 - We’ll move on to installing **Apache** now.
 
 > Apache HTTP Server is a free and open-source web server that delivers web content through the internet. It is commonly referred to as Apache and after development, it quickly became the most popular HTTP client on the web.
-> 
 
 [Source](https://www.sumologic.com/blog/apache-web-server-introduction/)
-
- 
 
 - Let’s install the required packages to support our web server. Keep in mind **Apache** is part of the following dependencies so it’s not listed explicitly on our command.
 
@@ -244,7 +285,7 @@ opcache.save_comments=1
 opcache.revalidate_freq=2**
 ```
 
-- When you run into a setting preceded by (;) ****make sure to take it out, this way we’re essentially “un-commenting” it, then update accordingly.
+- When you run into a setting preceded by (;) \*\*\*\*make sure to take it out, this way we’re essentially “un-commenting” it, then update accordingly.
 
 ![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2016.png)
 
@@ -280,13 +321,10 @@ opcache.revalidate_freq=2**
 
 ## Next steps:
 
-- Under **Administration settings → Overview**, you’ll find a dedicated section with a list of ******Security & setup warnings******. It’s important we address as many of these points as we can.
+- Under **Administration settings → Overview**, you’ll find a dedicated section with a list of **\*\***Security & setup warnings**\*\***. It’s important we address as many of these points as we can.
 
 - You can reference this [guide](https://docs.nextcloud.com/server/25/admin_manual/installation/harden_server.html) or my YouTube [video](https://www.youtube.com/watch?v=eARUpvD1G98) where I go through the finishing tweaks to correct **most** of these security concerns.
-    
-    
-    **IMPORTANT:** Unless we count with a registered DNS domain, we won’t be able to correct our insecure HTTP connection issue. This is expected as we’d need to acquire a TLS certificate. If you do have one, you can refer to this setup [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal) by Certbot.
-    
+  **IMPORTANT:** Unless we count with a registered DNS domain, we won’t be able to correct our insecure HTTP connection issue. This is expected as we’d need to acquire a TLS certificate. If you do have one, you can refer to this setup [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal) by Certbot.
 
 ## Further learning:
 
