@@ -27,7 +27,7 @@ It provides a common file access layer through its Universal File Access. By lev
 ## Project overview:
 
 <p align="center">
-<img src="https://imgur.com/cLUhfAY.png" height="75%" width="75%" alt="lab-diagram"/>
+<img src="https://imgur.com/cLUhfAY.png" height="70%" width="70%" alt="lab-diagram"/>
 </p>
 
 <br>
