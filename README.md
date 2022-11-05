@@ -59,13 +59,13 @@ It provides a common file access layer through its Universal File Access. By lev
 <br>
 
 <p align="center">
-<img src="https://imgur.com/D6KfH2C.png" height="70%" width="70%" alt="linode"/>
+<img src="https://imgur.com/D6KfH2C.png" height="80%" width="80%" alt="linode"/>
 </p>
 
 <br>
 
 <p align="center">
-<img src="https://imgur.com/LgTtzyd.png" height="70%" width="70%" alt="linode"/>
+<img src="https://imgur.com/LgTtzyd.png" height="80%" width="80%" alt="linode"/>
 </p>
 
 <br>
@@ -75,13 +75,13 @@ It provides a common file access layer through its Universal File Access. By lev
 <br>
 
 <p align="center">
-<img src="https://imgur.com/9fD2cug.png" height="70%" width="70%" alt="linode"/>
+<img src="https://imgur.com/9fD2cug.png" height="80%" width="80%" alt="linode"/>
 </p>
 
 <br>
 
 <p align="center">
-<img src="https://imgur.com/VKPID23.png" height="70%" width="70%" alt="linode"/>
+<img src="https://imgur.com/VKPID23.png" height="80%" width="80%" alt="linode"/>
 </p>
 
 <br>
@@ -91,69 +91,103 @@ It provides a common file access layer through its Universal File Access. By lev
 <br>
 
 <p align="center">
-<img src="https://imgur.com/8e42g8N.png" height="70%" width="70%" alt="ssh"/>
+<img src="https://imgur.com/8e42g8N.png" height="80%" width="80%" alt="ssh"/>
 </p>
 
 <br>
 
 - Since Linode defaults our main account to root, we’ll need to create one for ourselves.
 
-```sh
+```
 adduser <username>
 
 sudo usermod -aG sudo <username>
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%206.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/MBHicV2.png" height="80%" width="80%" alt="adduser"/>
+</p>
+
+<br>
 
 - After creating your own user, be sure to log out from root and log back in as that user.
+
+<br>
 
 - We’ll ensure all installed packages are up to date.
 
 ```
-**sudo apt update
+sudo apt update
 
-sudo apt dist-upgrade**
+sudo apt dist-upgrade
 ```
+
+<br>
 
 - Once done, we’ll update our hostname by editing the following files:
 
 ```
-**sudo nano /etc/hostname
+sudo nano /etc/hostname
 
-sudo nano /etc/hosts (only if you count with a registered DNS domain)**
+sudo nano /etc/hosts (only if you count with a registered DNS domain)
 ```
+
+<br>
 
 - Reboot the server so all our changes will take effect.
 
+<br>
+
 - Now, we’ll need to obtain the Nextcloud ZIP file from the [portal](https://nextcloud.com/).
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%207.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/RABVTa7.png" height="80%" width="80%" alt="archive"/>
+</p>
+
+<br>
 
 - Here’s the actual [link](https://download.nextcloud.com/server/releases/latest.zip) we’ll be using with **wget** from our terminal.
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%208.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/p4ejGhp.png" height="85%" width="85%" alt="wget"/>
+</p>
+
+<br>
 
 - Next, we’ll go through setting up the database server, so we’ll install **MariaDB**.
 
 ```
-**sudo apt install mariadb-server
+sudo apt install mariadb-server
 
-systemctl status mariadb**
+systemctl status mariadb
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%209.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/xWJKF8y.png" height="80%" width="80%" alt="mariadb"/>
+</p>
+
+<br>
 
 - We’ll run the **mysql_secure_installation** script to improve the security of our database. Pay attention to the prompts and if uncertain, you can always reference the [documentation](https://mariadb.com/kb/en/mysql_secure_installation/).
 
 ```
-**sudo mysql_secure_installation**
+sudo mysql_secure_installation
 ```
+
+<br>
 
 - Now, we’ll create the database for Nextcloud, we’ll need to access the **MariaDB** console.
 
 ```
-**sudo mariadb
+sudo mariadb
 
 CREATE DATABASE nextcloud;
 
@@ -161,14 +195,24 @@ SHOW DATABASES;
 
 GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY 'mypassword';
 
-FLUSH PRIVILEGES;**
+FLUSH PRIVILEGES;
 ```
 
-![Untitled](Lab%20-%20Build%20a%20Nextcloud%20server%20with%20Ubuntu%2022%2004%20a80366cb91224093a93138d5874df08d/Untitled%2010.png)
+<br>
+
+<p align="center">
+<img src="https://imgur.com/xkIBYqH.png" height="90%" width="90%" alt="mariadb"/>
+</p>
+
+<br>
 
 - Once we’re finished, we’ll exit by hitting **CTRL+D**.
 
+<br>
+
 - We’ll move on to installing **Apache** now.
+
+<br>
 
 > Apache HTTP Server is a free and open-source web server that delivers web content through the internet. It is commonly referred to as Apache and after development, it quickly became the most popular HTTP client on the web.
 
