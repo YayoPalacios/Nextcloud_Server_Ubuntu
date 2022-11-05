@@ -155,7 +155,7 @@ sudo nano /etc/hosts (only if you count with a registered DNS domain)
 <br>
 
 <p align="center">
-<img src="https://imgur.com/p4ejGhp.png" height="85%" width="85%" alt="wget"/>
+<img src="https://imgur.com/p4ejGhp.png" height="95%" width="95%" alt="wget"/>
 </p>
 
 <br>
@@ -201,7 +201,7 @@ FLUSH PRIVILEGES;
 <br>
 
 <p align="center">
-<img src="https://imgur.com/xkIBYqH.png" height="90%" width="90%" alt="mariadb"/>
+<img src="https://imgur.com/xkIBYqH.png" height="95%" width="95%" alt="mariadb"/>
 </p>
 
 <br>
