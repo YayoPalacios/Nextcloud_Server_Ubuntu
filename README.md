@@ -2,7 +2,7 @@
 
 ## [Here's my YouTube playlist ←](https://youtube.com/playlist?list=PLuYfa_nCnOPVwyO_SzmOPdIe8X9rjyvBl)
 
-[![YouTube](https://imgur.com/bTs0Eyp.jpg)](https://youtube.com/playlist?list=PLuYfa_nCnOPVwyO_SzmOPdIe8X9rjyvBl)
+<a href="https://youtube.com/playlist?list=PLuYfa_nCnOPVwyO_SzmOPdIe8X9rjyvBl"><img src="https://imgur.com/bTs0Eyp.jpg" height="50%" width="50%"></a>
 
 <br>
 
