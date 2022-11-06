@@ -2,6 +2,8 @@
 
 ## [Here's my YouTube playlist ←](https://youtube.com/playlist?list=PLuYfa_nCnOPVwyO_SzmOPdIe8X9rjyvBl)
 
+[![YouTube](https://img.youtube.com/vi/aZ8XZsYFMjY/hqdefault.jpg)](https://youtube.com/playlist?list=PLuYfa_nCnOPVwyO_SzmOPdIe8X9rjyvBl)
+
 <br>
 
 ## So, what is Nextcloud?
