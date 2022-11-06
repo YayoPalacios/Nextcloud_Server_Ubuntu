@@ -404,8 +404,6 @@ sudo systemctl restart apache2
 
 ### We are almost there!
 
-<br>
-
 - We still need to create an admin account and point to the database user we created with our **GRANT** statement when setting up **MariaDB**.
 
 <br>
@@ -449,7 +447,10 @@ sudo systemctl restart apache2
 - Under **Administration settings → Overview**, you’ll find a dedicated section with a list of **Security & setup warnings**. It’s important we address as many of these points as we can.
 
 - You can reference this [guide](https://docs.nextcloud.com/server/25/admin_manual/installation/harden_server.html) or my YouTube [video](https://www.youtube.com/watch?v=eARUpvD1G98) where I go through the finishing tweaks to correct **most** of these security concerns.
-  **IMPORTANT:** Unless we count with a registered DNS domain, we won’t be able to correct our insecure HTTP connection issue. This is expected as we’d need to acquire a TLS certificate. If you do have one, you can refer to this setup [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal) by Certbot.
+
+<br>
+
+> **IMPORTANT:** Unless we count with a registered DNS domain, we won’t be able to correct our insecure HTTP connection issue. This is expected as we’d need to acquire a TLS certificate. If you do have one, you can refer to this setup [guide](https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal) by Certbot.
 
 <br>
 
